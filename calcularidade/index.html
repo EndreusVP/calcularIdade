@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de idade</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 30px;
+            background-color: #000000;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: large;
+            font-weight: 600
+        }
+
+        #date {
+            border: none;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: large;
+            font-weight: 600;
+            box-shadow: 0px 0px 13px #ffffff;
+            background-color: #ffffff42;
+            color: #ffffff;
+        }
+
+        #date:focus {
+            outline: none;
+        }
+
+        button {
+            width: 130px;
+            height: 50px;
+            background-color: #efdb27;
+            border: none;
+            border-radius: 20px;
+            font-size: medium;
+            font-weight: 600;
+            animation: aumentar 2s ease-in-out infinite alternate;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        @keyframes aumentar {
+            from {
+                transform: scale(1);
+            } to {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <input id="date" type="number" placeholder="Digite seu ano de nascimentno">
+
+    <button onclick="calcular()">verificar idade</button>
+
+    <p id="resultado" style="color: #ffffff;"></p>
+</body>
+<script>
+    let res = document.getElementById("resultado");
+
+    function calcular() {
+
+        let data = document.getElementById("date");
+
+        const anoNascimento = Number(data.value);
+        const hoje = new Date()
+        const ano = hoje.getFullYear();
+
+        let idade = ano - anoNascimento;
+
+        if(anoNascimento > ano) {
+            res.textContent = "digite um ano valido"
+        }else {
+            if (idade >= 18) {
+                res.textContent = "vc eh maior de idade tendo: " + idade + " anos";
+            } else {
+            res.textContent = "vc nao eh maior de idade tendo: " + idade + " anos"
+            }
+        }
+            
+    }
+
+</script>
+
+</html>
